@@ -36,16 +36,17 @@ namespace DataConversion
 
             // find the complete word
             string word = "";
-            int endPoint = 0;
-            foreach (string data in splitData)
+            int startIndex = 0;
+            foreach (char c in s)
             {
-                if (data[0] == '(') break;
-                word += data + " ";
-                endPoint++;
+                if (c == '(') break;
+                startIndex++;
+                word += c;
+                word = word.Trim();
             }
 
             // determine if the word is already in the list, since it is in alphabetical order
-            // all the needs to be compared is the last item in the list
+            // all that needs to be compared is the last item in the list
             Word wordObj;
             if (WordList.Count > 0 && word == WordList[WordList.Count - 1].Term)
             {
@@ -60,22 +61,35 @@ namespace DataConversion
                 Console.WriteLine($"New word found: {word}");
             }
 
-            // create new definition and fill in data
+
+            // find the type of word from the items in '()'
+            // compare to dictionary of terms
+            string key = s.Substring(startIndex, s.IndexOf(')') - startIndex + 1);
             Definition definition = new Definition();
-            if (types.ContainsKey(splitData[endPoint]))
+            if (types.ContainsKey(key))
             {
-                definition.Type = types[splitData[endPoint]];
+                definition.Type = types[key];
             }
             else
             {
                 definition.Type = "";
             }
-            endPoint++;
 
+            // combine the rest of the string to find the definition
             string defCombined = "";
-            for (int i = endPoint; i < splitData.Length; i++)
+            bool endFound = false;
+            for (int i = 0; i < s.Length; i++)
             {
-                defCombined += splitData[i] + " ";
+                if (s[i] == ')')
+                {
+                    endFound = true;
+                    continue;
+                }
+                if (endFound)
+                {
+                    defCombined += s[i];
+                }
+
             }
 
             definition.Description = defCombined;
