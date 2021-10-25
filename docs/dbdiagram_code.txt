@@ -1,0 +1,54 @@
+Table p_users {
+  id int [pk]
+  username varchar
+  created datetime
+  last_login datetime
+}
+
+Table user_mastered_words {
+  id int [pk]
+  user_id int
+  word_id int
+}
+
+Table user_learning_words {
+  id int [pk]
+  user_id int
+  word_id int
+}
+
+Table words {
+  id int [pk]
+  word varchar
+}
+
+Table definitions {
+  id int [pk]
+  word_id int
+  definition varchar
+  type varchar
+}
+
+Table word_reports {
+  id int [pk]
+  submitter_id int
+  word_id int
+  date_submitted datetime
+  description varchar
+  status varchar
+}
+
+Table completed_reports {
+  id int [pk]
+  report_id int
+  resolve_message varchar
+}
+
+Ref: word_reports.submitter_id > p_users.id
+Ref: word_reports.word_id > words.id
+Ref: definitions.word_id > words.id
+Ref: completed_reports.report_id > word_reports.id
+Ref: user_mastered_words.user_id > p_users.id
+Ref: user_mastered_words.word_id > words.id
+Ref: user_learning_words.user_id > p_users.id
+Ref: user_learning_words.word_id > words.id
