@@ -31,13 +31,13 @@ namespace DataConversion
 
                     foreach (Word word in ConvertStringWord.WordList)
                     {
-                        Console.WriteLine($"Inserting {word.Term}into database...");
+                        Console.Write($"Inserting {word.Term} into database...");
                         int id = InsertWord($"INSERT INTO words(term) OUTPUT INSERTED.id VALUES (@term)", word);
-                        Console.WriteLine("Inserting definitions...");
+                        Console.Write($" Inserting {word.Term} definitions...");
                         InsertDefinitions(id, word);
                         Console.WriteLine($"{word.Term} was added successfully!");
                     }
-                    Console.WriteLine("Complete!");
+                    Console.WriteLine("All Operations Complete!");
                 }
             }
         }

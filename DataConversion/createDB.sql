@@ -37,3 +37,6 @@ CREATE TABLE definitions
 	description NVARCHAR(MAX),
 	type VARCHAR(20)
 );
+
+drop table definitions;
+drop table words;

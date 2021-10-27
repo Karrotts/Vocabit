@@ -23,10 +23,12 @@ namespace DataConversion
         {
             { "()", "" },
             { "(n.)", "noun" },
+            { "(a.)", "adjective"},
             { "(adv.)", "adverb" },
             { "(v.)", "verb" },
             { "(v. t.)", "transitive verb" },
-            { "(pl.)", "plural"},
+            { "(n. pl.)", "plural noun"},
+            { "(pl. )", "plural"},
             { "(prep.)", "preposition" }
         };
 
@@ -42,8 +44,9 @@ namespace DataConversion
                 if (c == '(') break;
                 startIndex++;
                 word += c;
-                word = word.Trim();
             }
+
+            word = word.Trim();
 
             // determine if the word is already in the list, since it is in alphabetical order
             // all that needs to be compared is the last item in the list
@@ -64,37 +67,44 @@ namespace DataConversion
 
             // find the type of word from the items in '()'
             // compare to dictionary of terms
-            string key = s.Substring(startIndex, s.IndexOf(')') - startIndex + 1);
-            Definition definition = new Definition();
-            if (types.ContainsKey(key))
+            try
             {
-                definition.Type = types[key];
-            }
-            else
-            {
-                definition.Type = "";
-            }
-
-            // combine the rest of the string to find the definition
-            string defCombined = "";
-            bool endFound = false;
-            for (int i = 0; i < s.Length; i++)
-            {
-                if (s[i] == ')')
+                string key = s.Substring(startIndex, s.IndexOf(')') - startIndex + 1);
+                Definition definition = new Definition();
+                if (types.ContainsKey(key))
                 {
-                    endFound = true;
-                    continue;
+                    definition.Type = types[key];
                 }
-                if (endFound)
+                else
                 {
-                    defCombined += s[i];
+                    definition.Type = "";
                 }
 
-            }
+                // combine the rest of the string to find the definition
+                string defCombined = "";
+                bool endFound = false;
+                for (int i = 0; i < s.Length; i++)
+                {
+                    if (s[i] == ')')
+                    {
+                        endFound = true;
+                        continue;
+                    }
+                    if (endFound)
+                    {
+                        defCombined += s[i];
+                    }
 
-            definition.Description = defCombined;
-            wordObj.Definitions.Add(definition);
-            Console.WriteLine("Complete!");
+                }
+
+                definition.Description = defCombined.Trim();
+                wordObj.Definitions.Add(definition);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+                return;
+            }
         }
     }
 }
