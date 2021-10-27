@@ -21,6 +21,7 @@ namespace Vocabit
     public static class Data
     {
         private static string connectionString = Environment.GetEnvironmentVariable("database");
+        public static int TotalEntries;
 
         public static List<string> Query(string query)
         {

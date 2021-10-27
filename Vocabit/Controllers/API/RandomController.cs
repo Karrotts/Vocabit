@@ -11,9 +11,10 @@ namespace Vocabit.Controllers
     public class RandomController : Controller
     {
         [HttpGet("/api/random")]
-        public string Get()
+        public Word Get()
         {
-            return "beans";
+            Random random = new Random();
+            return Data.GetWord(random.Next(1, Data.TotalEntries));
         }
 
         [HttpGet("/api/random/{amount}")]

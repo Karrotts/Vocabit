@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace Vocabit
 {
@@ -13,6 +14,7 @@ namespace Vocabit
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            Data.TotalEntries = Int32.Parse(Data.Query("SELECT COUNT(*) FROM words")[0]);
         }
 
         public IConfiguration Configuration { get; }
