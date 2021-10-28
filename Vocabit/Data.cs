@@ -60,7 +60,8 @@ namespace Vocabit
             string query = $"SELECT * FROM words AS w" +
                            $" INNER JOIN definitions AS d" +
                            $" ON w.id = d.word_id" +
-                           $" WHERE term = '{word}'";
+                           $" WHERE term = '{word}'" +
+                           $" AND NOT d.type = ''";
 
            return AnalyzeWordResults(Query(query));
         }
@@ -70,7 +71,8 @@ namespace Vocabit
             string query = $"SELECT * FROM words AS w" +
                            $" INNER JOIN definitions AS d" +
                            $" ON w.id = d.word_id" +
-                           $" WHERE w.id = {id}";
+                           $" WHERE w.id = {id}" +
+                           $" AND NOT d.type = ''";
 
             return AnalyzeWordResults(Query(query));
         }

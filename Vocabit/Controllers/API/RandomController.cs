@@ -14,13 +14,39 @@ namespace Vocabit.Controllers
         public Word Get()
         {
             Random random = new Random();
-            return Data.GetWord(random.Next(1, Data.TotalEntries));
+            Word word = new Word();
+            while(string.IsNullOrEmpty(word.Term))
+            {
+                word = Data.GetWord(random.Next(1, Data.TotalEntries));
+            }
+            return word;
         }
 
         [HttpGet("/api/random/{amount}")]
-        public string GetAmount(int amount)
+        public Word[] GetAmount(int amount)
         {
-            return amount.ToString();
+            Word[] words = new Word[amount];
+            Random random = new Random();
+            
+            for (int i = 0; i < amount; i++)
+            {
+                Word word = new Word();
+                while (string.IsNullOrEmpty(word.Term) || CheckIfWordIsPresent(words, word))
+                {
+                    word = Data.GetWord(random.Next(1, Data.TotalEntries));
+                }
+                words[i] = word;
+            }
+            return words;
+        }
+
+        private bool CheckIfWordIsPresent(Word[] words, Word word)
+        {
+            foreach (Word w in words)
+            {
+                if (w != null && word.Term == w.Term) return true;
+            }
+            return false;
         }
     }
 }
