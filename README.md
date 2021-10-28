@@ -15,7 +15,7 @@ Vocabit is built utlizing a ASP.NET Web API backend with a React frontend with a
 
 ## Getting Started
 
-Application ultilizes .NET Core 3.1, and Microsoft SQL Server. Both must be installed on your system in order for the application to run locally on your system.
+This application ultilizes .NET Core 3.1, and Microsoft SQL Server. Both must be installed on your system in order for the application to run locally on your system.
 * [.NET Core 3.1](https://dotnet.microsoft.com/download/dotnet/3.1)
 * [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 
