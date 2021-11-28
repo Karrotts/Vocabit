@@ -1,0 +1,54 @@
+{
+    "questions" : [
+        {
+            "question" : "Which popular Christmas beverage is also called “milk punch?”",
+            "answers" : [
+                "Candy Cane Latte",
+                "Hot Chocolate",
+                "Eggnog",
+                "Apple Cider"
+            ],
+            "correctAnswer" : 2
+        },
+        {
+            "question" : "What did the other reindeer not let Rudolph do because of his shiny red nose?",
+            "answers" : [
+                "Eat at the table.",
+                "Join the reindeer games.",
+                "Meet Santa.",
+                "Lead the sleigh."
+            ],
+            "correctAnswer" : 1
+        },
+        {
+            "question" : "How many ghosts show up in A Christmas Carol?",
+            "answers" : [
+                "Four",
+                "Three",
+                "Five",
+                "Two"
+            ],
+            "correctAnswer" : 0
+        },
+        {
+            "question" : "The movie Miracle on 34th Street is based on a real-life department store. What is it?",
+            "answers" : [
+                "Sears",
+                "Khols",
+                "Target",
+                "Macy's"
+            ],
+            "correctAnswer" : 3
+        },
+        {
+            "question" : "In the classic Christmas movie, How The Grinch Stole Christmas, the Grinch was described with three words. What are they?",
+            "answers" : [
+                "Stink, Stank, Stunk",
+                "Smelly, Stinky, Stanky",
+                "Ugly, Buggy, Snuggy",
+                "Lame, Tame, Insane"
+            ],
+            "correctAnswer" : 0
+        }
+    ]
+}
